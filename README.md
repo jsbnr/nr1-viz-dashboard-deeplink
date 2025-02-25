@@ -15,11 +15,13 @@ This custom visualisation allows you to deep link to a dashboard providing filte
 
 Add the custom visualisation to a new dashboard. Copy the link to the newly created dashboard and add a `filters` query parameter with the following JSON object as a value:
 
+```
 { 
     "guid": "<GUID of Dashboard (or Page) you want to deep link to>",
     "filters: "<filter string>",
     "variables: "<variables stringified object>"
 }
+```
 
 > The filters and variables are optional depending on your use case. You can provide both.
 
