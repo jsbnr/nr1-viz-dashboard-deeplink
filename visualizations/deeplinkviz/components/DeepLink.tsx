@@ -8,7 +8,7 @@ const DeepLink = () => {
 
 
   const openDash=()=>{
-    navigation.openStackedNerdlet({
+    navigation.openNerdlet({
       id: 'dashboards.detail',
       urlState: {
         entityGuid: dashData.guid,
