@@ -6,7 +6,6 @@ const DeepLink = () => {
   const [hasDashOpened, setHasDashOpened] = useState(false);
   const [dashData, setDashData] = useState({});
 
-
   const openDash=()=>{
     navigation.openNerdlet({
       id: 'dashboards.detail',
