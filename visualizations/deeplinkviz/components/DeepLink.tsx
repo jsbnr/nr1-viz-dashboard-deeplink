@@ -32,7 +32,8 @@ const DeepLink = () => {
                 const deepLinkData = JSON.parse(urlDecodedData);
                 variables=deepLinkData.variables ? JSON.parse(deepLinkData.variables) : {}
                 filters= deepLinkData.filters || '';
-                dashboardGUID = deepLinkData.guid || null;
+                //dashboardGUID = deepLinkData.guid || null;
+                dashboardGUID = deepLinkData.guid && deepLinkData.guid!= "" ? deepLinkData.guid :  "NOGUID";
                
                 setDashData({guid:dashboardGUID,variables:variables,filters:filters});
           
@@ -40,7 +41,7 @@ const DeepLink = () => {
                 console.error("Error parsing platformState.filters", error);
               }
             }
-           if(dashData.guid) {
+           if(dashData.guid && dashData.guid!="NOGUID") {
               if(!hasDashOpened) {
                 openDash();
                 setHasDashOpened(true);

@@ -13,7 +13,7 @@ This custom visualisation allows you to deep link to a dashboard providing filte
 
 ## Usage
 
-Add the custom visualisation to a new dashboard. Copy the link to the newly created dashboard and add a `filters` query parameter with the following JSON object as a value:
+Add the custom visualisation to a new dashboard. Copy the link to the newly created dashboard (including the state url parm) and add a `filters` query parameter with the following JSON object as a value:
 
 ```
 { 
@@ -23,12 +23,22 @@ Add the custom visualisation to a new dashboard. Copy the link to the newly crea
 }
 ```
 
+> You can provide a timerange as a duration (in milliseconds) or begin/end (as unix timestamps) in the url, see example
+
 > The filters and variables are optional depending on your use case. You can provide both.
 
-Example deep link:
+Example deep link setting filters and variables:
 
 ```
-https://one.newrelic.com/dashboards/detail/MzQ5....jA?state=c09...b0f0&filters={"guid":"Mzkz...GUID..YzMTg","filters":"appName='myAppName'","variables":"{\"exampleVar\":\"exampleValue\"}"}
+https://one.newrelic.com/dashboards/detail/MzQ5...DASHBOARD_GUID_CONTAINING_CUSTOM_VIZ...jA?state=c09...cb0f&filters={"guid":"Mzkz...GUID_OF_DASHBOARD_TO_LINK_TO..YzMTg","filters":"appName='myAppName'","variables":"{\"exampleVar\":\"exampleValue\"}"}
 ```
 
+Example deep link setting begin and end time (and filters and variables):
+```
+https://one.newrelic.com/dashboards/detail/MzQ5...DASHBOARD_GUID_CONTAINING_CUSTOM_VIZ...jA?state=c09...cb0f&begin=1740787200000&end=1740830400000&filters={"guid":"Mzkz...GUID_OF_DASHBOARD_TO_LINK_TO..YzMTg","filters":"appName='myAppName'","variables":"{\"exampleVar\":\"exampleValue\"}"}
+```
 
+Example deep link setting duration (24hrs)  (and filters and variables):
+```
+https://one.newrelic.com/dashboards/detail/MzQ5...DASHBOARD_GUID_CONTAINING_CUSTOM_VIZ...jA?state=c09...cb0f&duration=86400000&filters={"guid":"Mzkz...GUID_OF_DASHBOARD_TO_LINK_TO..YzMTg","filters":"appName='myAppName'","variables":"{\"exampleVar\":\"exampleValue\"}"}
+```
