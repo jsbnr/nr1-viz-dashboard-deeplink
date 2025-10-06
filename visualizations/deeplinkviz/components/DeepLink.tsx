@@ -18,12 +18,24 @@ const DeepLink = () => {
     });
   }
 
+  const openLogger=(accountId)=>{
+    navigation.openNerdlet({
+    id: 'logger.home',
+    urlState: {
+      accountId: accountId,
+      query: dashData.logFilter, // <- query not mutableQuery     
+    }
+  });
+  }
+
+
   return (
         <>
         <PlatformStateContext.Consumer>
         {(platformState) => {
             let variables={};
             let filters='';
+            let logFilter=null;
             let dashboardGUID=null;
             if(platformState.filters && !dashData.guid) {
               try {
@@ -32,10 +44,11 @@ const DeepLink = () => {
                 const deepLinkData = JSON.parse(urlDecodedData);
                 variables=deepLinkData.variables ? JSON.parse(deepLinkData.variables) : {}
                 filters= deepLinkData.filters || '';
+                logFilter = deepLinkData.logFilter || null;
                 //dashboardGUID = deepLinkData.guid || null;
                 dashboardGUID = deepLinkData.guid && deepLinkData.guid!= "" ? deepLinkData.guid :  "NOGUID";
                
-                setDashData({guid:dashboardGUID,variables:variables,filters:filters});
+                setDashData({guid:dashboardGUID,variables:variables,filters:filters, logFilter:logFilter});
           
               } catch (error) {
                 console.error("Error parsing platformState.filters", error);
@@ -52,6 +65,16 @@ const DeepLink = () => {
                   </CardBody>
                 </Card>
               
+           } else if(dashData.logFilter && logFilter!=='') {
+                  if(!hasDashOpened) {
+                    openLogger(platformState.accountId);
+                    setHasDashOpened(true);
+                  }
+                  return   <Card>
+                      <CardBody >
+                          Redirecting you to <a onClick={()=>{openLogger();}}>logs</a>...
+                      </CardBody>
+                    </Card>
            } else {
              return <Spinner />
            }

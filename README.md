@@ -42,3 +42,11 @@ Example deep link setting duration (24hrs)  (and filters and variables):
 ```
 https://one.newrelic.com/dashboards/detail/MzQ5...DASHBOARD_GUID_CONTAINING_CUSTOM_VIZ...jA?state=c09...cb0f&duration=86400000&filters={"guid":"Mzkz...GUID_OF_DASHBOARD_TO_LINK_TO..YzMTg","filters":"appName='myAppName'","variables":"{\"exampleVar\":\"exampleValue\"}"}
 ```
+
+
+Example of deep link to logs (be sure to include timeframe (begin and end - you can use duration but you must first set the state to unclude it for some reason),  account id and search term):
+```
+https://one.newrelic.com/dashboards/detail/MzQ5...DASHBOARD_GUID_CONTAINING_CUSTOM_VIZ...jA?state=c09...cb0f&state=c7528cdc-8821-b627-5998-dc77e79ffdc9&begin=1759762800000&end=1759765680000&account=YOURACCOUNTID&filters={"logFilter"%3A"SearchTermHere"}
+```
+
+
