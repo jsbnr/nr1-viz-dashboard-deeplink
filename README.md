@@ -1,5 +1,5 @@
-# New Relic Dashboard Deep Link
-This custom visualisation allows you to deep link to a dashboard providing filter or dashboard variable values.
+# New Relic Dashboard /Logs  Deep Link
+This custom visualisation allows you to deep link to a dashboard (or Logs UI) providing filter or dashboard variable values.
 
 ## Installation
 
@@ -46,7 +46,7 @@ https://one.newrelic.com/dashboards/detail/MzQ5...DASHBOARD_GUID_CONTAINING_CUST
 
 Example of deep link to logs (be sure to include timeframe (begin and end - you can use duration but you must first set the state to unclude it for some reason),  account id and search term):
 ```
-https://one.newrelic.com/dashboards/detail/MzQ5...DASHBOARD_GUID_CONTAINING_CUSTOM_VIZ...jA?state=c09...cb0f&state=c7528cdc-8821-b627-5998-dc77e79ffdc9&begin=1759762800000&end=1759765680000&account=YOURACCOUNTID&filters={"logFilter"%3A"SearchTermHere"}
+https://one.newrelic.com/dashboards/detail/MzQ5...DASHBOARD_GUID_CONTAINING_CUSTOM_VIZ...jA?state=c09..YOUR_STATE_VALUE...cb0f&state=c7528cdc-8821-b627-5998-dc77e79ffdc9&begin=1759762800000&end=1759765680000&account=YOURACCOUNTID&filters={"logFilter"%3A"SearchTermHere"}
 ```
 
 
