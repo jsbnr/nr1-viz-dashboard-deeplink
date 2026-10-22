@@ -1,5 +1,5 @@
 # New Relic Dashboard /Logs  Deep Link
-This custom visualisation allows you to deep link to a dashboard (or Logs UI) providing filter or dashboard variable values.
+This custom visualisation allows you to deep link to a dashboard, the Logs UI or a Browser session trace providing filter or dashboard variable values.
 
 ## Installation
 
@@ -47,6 +47,28 @@ https://one.newrelic.com/dashboards/detail/MzQ5...DASHBOARD_GUID_CONTAINING_CUST
 Example of deep link to logs (be sure to include timeframe (begin and end - you can use duration but you must first set the state to unclude it for some reason),  account id and search term):
 ```
 https://one.newrelic.com/dashboards/detail/MzQ5...DASHBOARD_GUID_CONTAINING_CUSTOM_VIZ...jA?state=c09..YOUR_STATE_VALUE...cb0f&state=c7528cdc-8821-b627-5998-dc77e79ffdc9&begin=1759762800000&end=1759765680000&account=YOURACCOUNTID&filters={"logFilter"%3A"SearchTermHere"}
+```
+
+### Browser session traces
+
+To open a Browser session trace directly, use a `filters` value with `sessionTraceId` and `entityGuid` instead of `guid`:
+
+```
+{
+    "sessionTraceId": "<ID of the session trace (pageTraceId)>",
+    "entityGuid": "<GUID of the Browser application that recorded the trace>"
+}
+```
+
+- `sessionTraceId` must be the complete trace ID. A truncated ID makes the session trace page fail to load.
+- `entityGuid` must be the Browser application's GUID, not the dashboard's. Without it the session trace page cannot resolve the entity and fails with an `accountId` error. The GUID is in the URL when you open the trace from the Browser UI.
+- A `duration` (or `begin`/`end`) URL parameter is required. Without a time range the session trace page fails with a `duration` error.
+
+If `filters` contains a `guid` it takes precedence. Order is `guid`, then `sessionTraceId`, then `logFilter`.
+
+Example deep link to a session trace (last 30 minutes):
+```
+https://one.newrelic.com/dashboards/detail/MzQ5...DASHBOARD_GUID_CONTAINING_CUSTOM_VIZ...jA?state=c09...cb0f&duration=1800000&filters={"sessionTraceId":"e10fa296b77408df","entityGuid":"ODQx...BROWSER_APP_GUID...OA"}
 ```
 
 
